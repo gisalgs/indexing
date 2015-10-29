@@ -1,7 +1,7 @@
 """
 k-D trees, Part 2a.
 
-Rectangle range query of k-D trees
+Rectangle range query of point k-D trees
 
 Contact:
 Ningchuan Xiao
@@ -18,7 +18,7 @@ def range_query_orthogonal(t, rect, found, depth=0):
     Orthogonal (rectangular) range search for points
 
     Input
-      t: node of a k-D tree
+      t: node of a point k-D tree
       rect: 2D list defining a rectangle as [ [xmin, xmax], [ymin, ymax] ]
       found: a list to hold points found, declared outside
 
