@@ -1,5 +1,5 @@
 """
-k-D trees. Part 1.
+Point k-D trees. Part 1.
 
 Contact:
 Ningchuan Xiao
@@ -10,6 +10,9 @@ Columbus, OH
 __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
 class kDTreeNode():
+    """
+    Node for point k-D trees.
+    """
     def __init__(self, point, left, right):
         self.point = point
         self.left = left
@@ -36,7 +39,7 @@ def kdcompare(r, p, depth):
 
 def kdtree(points):
     """
-    Creates a k-d tree using a predefined order of points
+    Creates a point k-D tree using a predefined order of points
     """
     root = kDTreeNode(point=points[0], left=None, right=None)
     for p in points[1:]:
@@ -50,7 +53,7 @@ def kdtree(points):
 
 def kdtree2(points, depth = 0):
     """
-    Creates a k-d tree using the median point to split the data
+    Creates a point k-d tree using the median point to split the data
     """
     if len(points)==0:
         return
@@ -70,7 +73,7 @@ def kdtree2(points, depth = 0):
 def query_kdtree(t, p, depth=0, is_find_only=True):
     """
     Input
-      t:            a node of a binary tree
+      t:            a node of a point k-D tree
       p:            target point to be found in the tree
       is_find_only: True/False, specifying type of output
 
