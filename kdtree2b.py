@@ -1,7 +1,7 @@
 """
 k-D trees, Part 2b.
 
-Circular range query of k-D trees
+Circular range query of point k-D trees
 
 Contact:
 Ningchuan Xiao
@@ -18,7 +18,7 @@ def range_query_circular(t, p, r, found, depth=0):
     Circular range search for points within a radius of r around p
 
     Input
-      t: node of a k-D tree
+      t: node of a point k-D tree
       p: a Point object around which query is performed
       found: a list to hold points found, declared outside
       depth: the current depth on the k-D tree, mainly used internally
