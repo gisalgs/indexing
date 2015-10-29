@@ -1,7 +1,7 @@
 """
 k-D trees. Part 3.
 
-Nearest neighbor search using k-D trees
+Nearest neighbor search using point k-D trees
 
 Contact:
 Ningchuan Xiao
