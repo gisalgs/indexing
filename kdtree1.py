@@ -68,6 +68,16 @@ def kdtree2(points, depth = 0):
                                     depth+1))
 
 def query_kdtree(t, p, depth=0, is_find_only=True):
+    """
+    Input
+      t:            a node of a binary tree
+      p:            target point to be found in the tree
+      is_find_only: True/False, specifying type of output
+
+    Output
+      the node that contans p or None if is_find_only is True, otherwise
+      the node that should be the parent node of p
+    """
     if t is None:
         return
     if t.point == p and is_find_only:
