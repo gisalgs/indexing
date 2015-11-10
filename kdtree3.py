@@ -11,11 +11,6 @@ Columbus, OH
 
 __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
-import sys
-sys.path.append('../geom')
-from point import *
-from kdtree1 import *
-
 INF = float('inf')
 maxdist = INF
 
@@ -54,27 +49,3 @@ def kdtree_nearest_neighbor_query(t, p, n=1):
     nearest_neighbors = []
     nnquery(t, p, n, nearest_neighbors)
     return nearest_neighbors[:n]
-
-if __name__ == '__main__':
-    data1 = [ (2,2), (0,5), (8,0), (9,8), (7,14),
-              (13,12), (14,13) ]
-    points = [Point(d[0], d[1]) for d in data1]
-    p = Point(5,5)
-    t1 = kdtree(points)
-    n = 3
-    nearests = []
-    nnquery(t1, p, n, nearests)
-    print [x[0] for x in nearests[:n]]
-    print [x[1] for x in nearests[:n]]
-    print sorted([p.distance(x) for x in points])[:n]
-
-    data2 = [[5,5], [5.1,2.5], [1,1]]
-    points2 = [Point(d[0], d[1]) for d in data2]
-    p = Point(4.9,2.46)
-    t2 = kdtree(points2)
-    n = 1
-    nearests2 = []
-    nnquery(t2, p, n, nearests2)
-    print nearests2[:n]
-    print sorted([p.distance(x) for x in points2])
-    
