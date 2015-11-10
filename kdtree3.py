@@ -11,6 +11,9 @@ Columbus, OH
 
 __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
+import sys
+sys.path.append('../geom')
+from point import *
 from kdtree1 import *
 
 INF = float('inf')
@@ -43,7 +46,7 @@ def nnquery(t, p, n, found, depth=0):
         nearer_tree, farther_tree = t.right, t.left
     nnquery(nearer_tree, p, n, found, depth+1)
     maxdist = update_neighbors(t.point, p, found, n)
-    if (t.point.distance(p)) < maxdist:
+    if abs(t.point[axis]-p[axis]) < maxdist: # must check the far side
         nnquery(farther_tree, p, n, found, depth+1)
     return
 
@@ -64,3 +67,14 @@ if __name__ == '__main__':
     print [x[0] for x in nearests[:n]]
     print [x[1] for x in nearests[:n]]
     print sorted([p.distance(x) for x in points])[:n]
+
+    data2 = [[5,5], [5.1,2.5], [1,1]]
+    points2 = [Point(d[0], d[1]) for d in data2]
+    p = Point(4.9,2.46)
+    t2 = kdtree(points2)
+    n = 1
+    nearests2 = []
+    nnquery(t2, p, n, nearests2)
+    print nearests2[:n]
+    print sorted([p.distance(x) for x in points2])
+    
