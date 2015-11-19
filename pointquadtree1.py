@@ -1,3 +1,25 @@
+"""
+Point quadtree. Part 1.
+
+History: 
+
+  November 19, 2015
+
+  changed the two conditions in search_pqtree to:
+     if p.x>=q.point.x
+  and
+     if p.y>=q.point.y
+  
+  This forces the consistency in how the four quads are determined in
+  functions search_pqtree and insert_pqtree
+  (Thanks to Hui Kong for examining the code!)
+
+Contact:
+Ningchuan Xiao
+The Ohio State University
+Columbus, OH
+"""
+
 class PQuadTreeNode():
     def __init__(self,point,nw=None,ne=None,se=None,sw=None):
         self.point = point
@@ -17,9 +39,9 @@ def search_pqtree(q, p, is_find_only=True):
     if q.point==p and is_find_only:
         return q
     dx,dy=0,0
-    if p.x>q.point.x:
+    if p.x>=q.point.x:
         dx=1
-    if p.y>q.point.y:
+    if p.y>=q.point.y:
         dy=1
     qnum = dx+dy*2
     child = [q.sw, q.se, q.nw, q.ne][qnum]
