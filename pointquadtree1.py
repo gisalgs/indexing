@@ -20,6 +20,8 @@ The Ohio State University
 Columbus, OH
 """
 
+__author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
+
 class PQuadTreeNode():
     def __init__(self,point,nw=None,ne=None,se=None,sw=None):
         self.point = point
