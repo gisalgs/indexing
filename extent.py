@@ -1,3 +1,16 @@
+"""
+Extent class
+
+Contact:
+Ningchuan Xiao
+The Ohio State University
+Columbus, OH
+"""
+
+__author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
+
+from math import sqrt
+
 class Extent():
     def __init__(self, xmin=0, xmax=0, ymin=0, ymax=0):
         self.xmin = xmin
