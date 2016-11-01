@@ -1,6 +1,11 @@
 """
 Point k-D trees. Part 1.
 
+History
+    October 31, 2016
+        Function query_kdtree: now returns None if the point is found and is_find_only is False.
+        This will explicitly exclude duplicated points from being inserted into the tree.
+
 Contact:
 Ningchuan Xiao
 The Ohio State University
@@ -61,14 +66,11 @@ def kdtree2(points, depth = 0):
     axis = depth % k
     points.sort(key=lambda points: points[axis])
     pivot = len(points)//2
-    while pivot<len(points)-1 and\
-          points[pivot][axis]==points[pivot+1][axis]:
+    while pivot<len(points)-1 and points[pivot][axis]==points[pivot+1][axis]:
         pivot += 1
     return kDTreeNode(point=points[pivot],
-                      left=kdtree2(points[:pivot],
-                                   depth+1),
-                      right=kdtree2(points[pivot+1:],
-                                    depth+1))
+                      left=kdtree2(points[:pivot], depth+1),
+                      right=kdtree2(points[pivot+1:], depth+1))
 
 def query_kdtree(t, p, depth=0, is_find_only=True):
     """
@@ -83,21 +85,25 @@ def query_kdtree(t, p, depth=0, is_find_only=True):
     """
     if t is None:
         return
-    if t.point == p and is_find_only:
-        return t
+    if t.point == p:
+        if is_find_only:
+            return t
+        else:
+            return
     lr = kdcompare(t, p, depth)
     if lr<0:
         child = t.left
     else:
         child = t.right
-    if child is None:
-        if not is_find_only:
-            return t, lr
-        else:
-            return
+    if not is_find_only and child is None:
+        return t, lr
     return query_kdtree(child, p, depth+1, is_find_only)
 
 if __name__ == '__main__':
+    import sys
+    sys.path.append('../geom')
+    from point import *
+
     data1 = [ (2,2), (0,5), (8,0), (9,8),
               (7,14), (13,12), (14,13) ]
     points = [Point(d[0], d[1]) for d in data1]
@@ -106,5 +112,4 @@ if __name__ == '__main__':
     t2 = kdtree2(points)
 
     print [ query_kdtree(t1, p) for p in points ]
-    print [ query_kdtree(t2, p) for p in points ]    
-
+    print [ query_kdtree(t2, p) for p in points ]
