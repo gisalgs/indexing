@@ -6,6 +6,9 @@ History
         Function query_kdtree: now returns None if the point is found and is_find_only is False.
         This will explicitly exclude duplicated points from being inserted into the tree.
 
+    November 2, 2016
+        Added function depth
+
 Contact:
 Ningchuan Xiao
 The Ohio State University
@@ -99,6 +102,15 @@ def query_kdtree(t, p, depth=0, is_find_only=True):
         return t, lr
     return query_kdtree(child, p, depth+1, is_find_only)
 
+def depth(t):
+    """
+    Returns the depth of the tree
+    """
+    if t == None:
+        return -1
+    return max(depth(t.left)+1, depth(t.right)+1)
+
+
 if __name__ == '__main__':
     import sys
     sys.path.append('../geom')
@@ -113,3 +125,6 @@ if __name__ == '__main__':
 
     print [ query_kdtree(t1, p) for p in points ]
     print [ query_kdtree(t2, p) for p in points ]
+    print 'Depth of t1:', depth(t1)
+    print 'Depth of t2:', depth(t2)
+    
