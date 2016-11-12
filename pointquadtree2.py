@@ -4,8 +4,12 @@ Point quadtree. Part 2.
 Circular range query
 
 History
+
+  November 12, 2016
+    Moved import inside __main__
+
   November 23, 2015
-  Add more conditions to further speed up search.
+    Add more conditions to further speed up search.
 
 Contact:
 Ningchuan Xiao
