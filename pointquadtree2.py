@@ -20,6 +20,9 @@ Columbus, OH
 __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
 def range_query(t, p, r):
+    """
+    Circular range query
+    """
     def rquery(t, p, r, found):
         if t is None:
             return
