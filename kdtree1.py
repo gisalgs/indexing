@@ -88,7 +88,7 @@ def query_kdtree(t, p, depth=0, is_find_only=True):
       is_find_only: True to find if p exists, or False to find the parent node of p
 
     Output
-      t:            the node that contans p or None (is_find_only is True)
+      t:            the node that contains p or None (is_find_only is True)
                     the node that should be the parent node of p (is_find_only is False)
       lr:           None (is_find_only is True)
                     0 -- indicating p be the left child node of t (is_find_only is False)
