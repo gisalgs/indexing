@@ -2,12 +2,15 @@
 Point k-D trees. Part 1.
 
 History
-    October 31, 2016
-        Function query_kdtree: now returns None if the point is found and is_find_only is False.
-        This will explicitly exclude duplicated points from being inserted into the tree.
+    December 4, 2016
+        Function kdtree() now does not stop with duplicated points.
 
     November 2, 2016
         Added function depth
+
+    October 31, 2016
+        Function query_kdtree: now returns None if the point is found and is_find_only is False.
+        This will explicitly exclude duplicated points from being inserted into the tree.
 
 Contact:
 Ningchuan Xiao
@@ -53,6 +56,8 @@ def kdtree(points):
     for p in points[1:]:
         node = kDTreeNode(point=p, left=None, right=None)
         p0, lr = query_kdtree(root, p, 0, False)
+        if p0 is None and lr is None:   # skip if duplicated
+            continue
         if lr<0:
             p0.left = node
         else:
@@ -80,19 +85,22 @@ def query_kdtree(t, p, depth=0, is_find_only=True):
     Input
       t:            a node of a point k-D tree
       p:            target point to be found in the tree
-      is_find_only: True/False, specifying type of output
+      is_find_only: True to find if p exists, or False to find the parent node of p
 
     Output
-      the node that contans p or None if is_find_only is True, otherwise
-      the node that should be the parent node of p
+      t:            the node that contans p or None (is_find_only is True)
+                    the node that should be the parent node of p (is_find_only is False)
+      lr:           None (is_find_only is True)
+                    0 -- indicating p be the left child node of t (is_find_only is False)
+                    1 -- indicating p be the right child node of t (is_find_only is False)
     """
     if t is None:
         return
     if t.point == p:
         if is_find_only:
-            return t
+            return t, None
         else:
-            return
+            return None, None
     lr = kdcompare(t, p, depth)
     if lr<0:
         child = t.left
@@ -123,8 +131,7 @@ if __name__ == '__main__':
     t1 = kdtree(points)
     t2 = kdtree2(points)
 
-    print [ query_kdtree(t1, p) for p in points ]
-    print [ query_kdtree(t2, p) for p in points ]
+    print [ query_kdtree(t1, p)[0] for p in points ]
+    print [ query_kdtree(t2, p)[0] for p in points ]
     print 'Depth of t1:', depth(t1)
     print 'Depth of t2:', depth(t2)
-    
