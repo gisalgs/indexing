@@ -72,7 +72,7 @@ def kdtree2(points, depth = 0):
         return
     k = len(points[0])
     axis = depth % k
-    points.sort(key=lambda points: points[axis])
+    points.sort(key=lambda p: p[axis])
     pivot = len(points)//2
     while pivot<len(points)-1 and points[pivot][axis]==points[pivot+1][axis]:
         pivot += 1
