@@ -11,7 +11,8 @@ Columbus, OH
 
 __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
-from kdtree1 import *
+from geom.point import *
+from indexing.kdtree1 import *
     
 def range_query_circular(t, p, r, found, depth=0):
     """
