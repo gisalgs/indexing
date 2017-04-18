@@ -40,8 +40,10 @@ def search_bt(t, d, is_find_only=True):
         else:
             return
     if not is_find_only and next is None:
-            return t
+        return t
     return search_bt(next, d, is_find_only)
+
+
 
 def insert(t, d):
     n = search_bt(t, d, False)
@@ -59,6 +61,42 @@ def bt(data):
         insert(root, d)
     return root
 
+def search_bt_loop(t, d, is_find_only=True):
+    """
+    similar to search_bt, but use a while loop instead of recursive
+    """
+    while True:
+        if t is None:
+            return
+        if t.data == d:
+            if is_find_only:
+                return t
+            else:
+                return
+        if d < t.data:
+            next = t.left
+        else:
+            next = t.right
+        if not is_find_only and next is None:
+            return t
+        t = next
+
+def insert_loop(t, d):
+    n = search_bt_loop(t, d, False)
+    if n is None:
+        return
+    n0 = node(d, left=None, right=None)
+    if d < n.data:
+        n.left = n0
+    else:
+        n.right = n0
+
+def bt_loop(data):
+    root = node(data=data[0], left=None, right=None)
+    for d in data[1:]:
+        insert_loop(root, d)
+    return root
+
 def bt_print(t):
     if t.left:
         bt_print(t.left)
@@ -68,7 +106,7 @@ def bt_print(t):
 
 def tree_print(t):
     """
-    This is adopted from the MIT OpenCourseWare at 
+    This is adopted from the MIT OpenCourseWare at
     http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/readings/binary-search-trees/bst.py
     """
     def tree_print_helper(t):
@@ -89,9 +127,11 @@ def tree_print(t):
         label = label.center(middle, '_')
         if label[0] == '_': label=' ' + label[1:]
         if label[-1] == '_': label = label[:-1]+' '
-        lines = [' '*leftpos + label + ' '*(rightwidth-rightpos),
-                 ' '*leftpos + '/' + ' '*(middle-2) + '\\' + ' '*(rightwidth-rightpos)] + \
-            [leftline + ' '*(width-leftwidth-rightwidth) +
-             rightline for leftline, rightline in zip(leftstr, rightstr)]
+        lines = [' '*leftpos + label + ' '*(rightwidth-rightpos), ' '*leftpos + '/' + ' '*(middle-2) + '\\' + ' '*(rightwidth-rightpos)] + [leftline + ' '*(width-leftwidth-rightwidth) + rightline for leftline, rightline in zip(leftstr, rightstr)]
         return lines, pos, width
     print '\n'.join(tree_print_helper(t)[0])
+
+if __name__ == '__main__':
+    data = range(3)
+    t = bt(data)
+    tree_print(t)

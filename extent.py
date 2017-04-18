@@ -9,6 +9,10 @@ Columbus, OH
 
 __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
+# import sys
+# sys.path.append('../geom')
+# from point import *
+#
 from math import sqrt
 
 class Extent():

@@ -1,3 +1,16 @@
+"""
+Point quadtree. Part 3.
+
+Nearest neighbor query
+
+Contact:
+Ningchuan Xiao
+The Ohio State University
+Columbus, OH
+"""
+
+__author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
+
 INF = float('inf')
 pqmaxdist = INF
 from kdtree3 import *

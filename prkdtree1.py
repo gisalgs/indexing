@@ -74,7 +74,6 @@ def query_prkdtree(t, p, depth=0):
         return p0
     return
 
-
 if __name__ == '__main__':
     import sys
     sys.path.append('../')
