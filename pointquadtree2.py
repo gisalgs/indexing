@@ -4,6 +4,8 @@ Point quadtree. Part 2.
 Circular range query
 
 History
+  October 10, 2017
+    Python 3
 
   November 12, 2016
     Moved import inside __main__
@@ -78,9 +80,9 @@ def test():
     time1 = time.time()
     found = range_query(q, Point(50, 50), 2)
     time2 = time.time()
-    print count
-    print found
-    print time2-time1
+    print(count)
+    print(found)
+    print(time2-time1)
 
 if __name__ == "__main__":
     import sys
