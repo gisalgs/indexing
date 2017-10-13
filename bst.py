@@ -100,7 +100,7 @@ def bt_loop(data):
 def bt_print(t):
     if t.left:
         bt_print(t.left)
-    print t
+    print(t)
     if t.right:
         bt_print(t.right)
 
@@ -108,10 +108,12 @@ def tree_print(t):
     """
     This is adopted from the MIT OpenCourseWare at
     http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/readings/binary-search-trees/bst.py
+    Now supports Python 3
     """
     def tree_print_helper(t):
         if t is None:
             return [], 0, 0
+        # label = str(t.key)
         label = str(t)
         leftstr, leftpos, leftwidth = tree_print_helper(t.left)
         rightstr, rightpos, rightwidth = tree_print_helper(t.right)
@@ -129,7 +131,7 @@ def tree_print(t):
         if label[-1] == '_': label = label[:-1]+' '
         lines = [' '*leftpos + label + ' '*(rightwidth-rightpos), ' '*leftpos + '/' + ' '*(middle-2) + '\\' + ' '*(rightwidth-rightpos)] + [leftline + ' '*(width-leftwidth-rightwidth) + rightline for leftline, rightline in zip(leftstr, rightstr)]
         return lines, pos, width
-    print '\n'.join(tree_print_helper(t)[0])
+    print('\n'.join(tree_print_helper(t)[0]))
 
 if __name__ == '__main__':
     data = range(3)
