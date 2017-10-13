@@ -13,7 +13,10 @@ __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
 INF = float('inf')
 pqmaxdist = INF
-from kdtree3 import *
+
+import sys
+sys.path.append('..')
+from indexing.kdtree3 import *
 
 # returns the quad of t where p is located
 # 0-NW, 1-NE, 2-SE, 3-SW
@@ -44,9 +47,8 @@ def pq_nnquery(t, p, n, found):
             if abs(t.point.x-p.x) < pqmaxdist or abs(t.point.y-p.y) < pqmaxdist:
                 pq_nnquery(quads[i], p, n, found)
     return
-    
+
 def pq_nearest_neighbor_query(t, p, n=1):
     nearest_neighbors = []
     pq_nnquery(t, p, n, nearest_neighbors)
     return nearest_neighbors[:n]
-
