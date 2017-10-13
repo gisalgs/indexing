@@ -11,7 +11,9 @@ Columbus, OH
 
 __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
-from kdtree1 import *
+import sys
+sys.path.append('..')
+from indexing.kdtree1 import *
 
 def range_query_orthogonal(t, rect, found, depth=0):
     """
@@ -23,7 +25,7 @@ def range_query_orthogonal(t, rect, found, depth=0):
       found: a list to hold points found, declared outside
 
     Output
-      This function does not return any values. However, all the points 
+      This function does not return any values. However, all the points
       found during the query process will be appended to list found.
     """
     if t is None:
@@ -31,10 +33,10 @@ def range_query_orthogonal(t, rect, found, depth=0):
     k = len(t.point)
     axis = depth%k
     if t.point[axis] < rect[axis][0]:
-        range_query_orthogonal(t.right, rect, found, depth+1) 
+        range_query_orthogonal(t.right, rect, found, depth+1)
         return
     if t.point[axis] > rect[axis][1]:
-        range_query_orthogonal(t.left, rect, found, depth+1) 
+        range_query_orthogonal(t.left, rect, found, depth+1)
         return
     x, y = t.point.x, t.point.y
     if not (rect[0][0]>x or rect[0][1]<x or
@@ -52,7 +54,7 @@ def test():
     rect = [ [1, 9], [2, 9] ]
     found = []
     range_query_orthogonal(t1, rect, found)
-    print found
+    print(found)
 
 if __name__ == '__main__':
     test()
