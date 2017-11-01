@@ -110,7 +110,7 @@ def query_kdtree(t, p, depth=0, is_find_only=True):
         child = t.left
     else:
         child = t.right
-    if not is_find_only and child is None:
+    if is_find_only==False and child is None:
         return t, lr
     return query_kdtree(child, p, depth+1, is_find_only)
 

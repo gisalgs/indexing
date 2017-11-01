@@ -39,11 +39,9 @@ def search_bt(t, d, is_find_only=True):
             return t
         else:
             return
-    if not is_find_only and next is None:
+    if is_find_only==False and next is None:
         return t
     return search_bt(next, d, is_find_only)
-
-
 
 def insert(t, d):
     n = search_bt(t, d, False)
