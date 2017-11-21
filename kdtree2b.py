@@ -13,7 +13,7 @@ __author__ = "Ningchuan Xiao <ncxiao@gmail.com>"
 
 from geom.point import *
 from indexing.kdtree1 import *
-    
+
 def range_query_circular(t, p, r, found, depth=0):
     """
     Circular range search for points within a radius of r around p
@@ -26,7 +26,7 @@ def range_query_circular(t, p, r, found, depth=0):
              during recursive searching
 
     Output
-      This function does not return any values. However, all the points 
+      This function does not return any values. However, all the points
       found during the query process will be appended to list found.
     """
     if t is None:
@@ -43,6 +43,11 @@ def range_query_circular(t, p, r, found, depth=0):
     range_query_circular(t.right, p, r, found, depth+1)
     return
 
+def kdtree_range_query_circular(t, p, r):
+    found = []
+    range_query_circular(t, p, r, found)
+    return found
+
 def test():
     data1 = [ (2,2), (0,5), (8,0), (9,8), (7,14),
               (13,12), (14,13) ]
@@ -51,7 +56,7 @@ def test():
     t1 = kdtree(points)
     found = []
     range_query_circular(t1, p, 5, found)
-    print found
+    print(found)
 
 if __name__ == '__main__':
     test()
