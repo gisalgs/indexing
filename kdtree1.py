@@ -4,7 +4,7 @@ Point k-D trees. Part 1.
 History
     October 13, 2017
         Python 3
-        query_kdtree returns None, None with tree is empty
+        query_kdtree returns None, None when tree is empty
 
     December 4, 2016
         Function kdtree() now does not stop with duplicated points.
@@ -89,6 +89,7 @@ def query_kdtree(t, p, depth=0, is_find_only=True):
     Input
       t:            a node of a point k-D tree
       p:            target point to be found in the tree
+      depth:        the depth of node t (default 0)
       is_find_only: True to find if p exists, or False to find the parent node of p
 
     Output
