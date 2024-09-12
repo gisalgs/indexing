@@ -21,6 +21,7 @@ def range_query_circular(t, p, r, found, depth=0):
     Input
       t: node of a point k-D tree
       p: a Point object around which query is performed
+      r: circle radius around p
       found: a list to hold points found, declared outside
       depth: the current depth on the k-D tree, mainly used internally
              during recursive searching
