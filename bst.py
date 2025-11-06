@@ -30,15 +30,15 @@ def search_bt(t, d, is_find_only=True):
     """
     if t is None:
         return
-    if d < t.data:
-        next = t.left
-    else:
-        next = t.right
     if t.data == d:
         if is_find_only:
             return t
         else:
             return
+    if d < t.data:
+        next = t.left
+    else:
+        next = t.right
     if is_find_only==False and next is None:
         return t
     return search_bt(next, d, is_find_only)
@@ -105,7 +105,11 @@ def bt_print(t):
 def tree_print(t):
     """
     This is adopted from the MIT OpenCourseWare at
+    https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/7f7ba1c1c85b1ec4bd58965bfe791489_bst.py
+
+    The old link does not work:
     http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/readings/binary-search-trees/bst.py
+ 
     Now supports Python 3
     """
     def tree_print_helper(t):
@@ -115,8 +119,8 @@ def tree_print(t):
         label = str(t)
         leftstr, leftpos, leftwidth = tree_print_helper(t.left)
         rightstr, rightpos, rightwidth = tree_print_helper(t.right)
-        middle = max(rightpos+leftwidth - leftpos+1, len(label), 2)
-        pos = leftpos + middle // 2
+        middle = max(rightpos+leftwidth - leftpos+1, len(label), 2) # length
+        pos = leftpos + middle // 2                                 # pos of current node
         width = leftpos + middle + rightwidth - rightpos
         while len(leftstr)<len(rightstr):
             leftstr.append(' '*leftwidth)
@@ -125,8 +129,10 @@ def tree_print(t):
         if (middle-len(label))%2 == 1:
             label += '_'
         label = label.center(middle, '_')
-        if label[0] == '_': label=' ' + label[1:]
-        if label[-1] == '_': label = label[:-1]+' '
+        if label[0] == '_':
+            label=' ' + label[1:]
+        if label[-1] == '_':
+            label = label[:-1]+' '
         lines = [' '*leftpos + label + ' '*(rightwidth-rightpos), ' '*leftpos + '/' + ' '*(middle-2) + '\\' + ' '*(rightwidth-rightpos)] + [leftline + ' '*(width-leftwidth-rightwidth) + rightline for leftline, rightline in zip(leftstr, rightstr)]
         return lines, pos, width
     print('\n'.join(tree_print_helper(t)[0]))
